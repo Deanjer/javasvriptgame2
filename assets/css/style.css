@@ -2,6 +2,9 @@
     margin: 0;
     padding: 0;
 }
-body{
+/* body{
     background-color: brown;
+} */
+canvas{
+    image-rendering: pixelated;
 }
