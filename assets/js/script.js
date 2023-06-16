@@ -100,11 +100,15 @@ function animate(){
     requestAnimationFrame(animate)
     boundaries.forEach((Boundary) => {
         Boundary.draw();
+        if(player.position.y - player.radius <= Boundary.position.y + Boundary.height && 
+            player.position.x + player.radius >= Boundary.position.x && player.position.y + player.radius >= Boundary.position.y && player.position.x - player.radius <= Boundary.position.x + Boundary.width){
+                console.log(collision)
+            }
       });
       
-     player.update();
+    player.update();
     player.velocity.y = 0
-    player.velocity.x = 0
+    player.velocity.x = 0 
 
       if(keys.w.pressed && lastKey === 'w') {
         player.velocity.y = -5
@@ -136,7 +140,7 @@ addEventListener("keydown", ({ key }) => {
       break;
     case "d":
         keys.d.pressed = true 
-        lastKey = 'dd'
+        lastKey = 'd'
       break;
   }
 });
