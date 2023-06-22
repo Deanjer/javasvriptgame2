@@ -15,9 +15,25 @@ class Boundary {
     this.position = position;
     this.width = gridSize;
     this.height = gridSize;
+    this.type = 'normal';
   }
   draw() {
     c.fillStyle = "#577590 ";
+    c.fillRect(this.position.x, this.position.y, this.width, this.height);
+  }
+}
+
+class finish {
+  static width = gridSize;
+  static height = gridSize;
+  constructor({ position }) {
+    this.position = position;
+    this.width = gridSize;
+    this.height = gridSize /2;
+    this.type = 'finish';
+  }
+  draw() {
+    c.fillStyle = "black";
     c.fillRect(this.position.x, this.position.y, this.width, this.height);
   }
 }
@@ -40,37 +56,37 @@ class Player {
     this.position.y += this.velocity.y
   }
 }
-class Point {
-  constructor({ position }) {
-    this.position = position;
-    this.radius = gridSize / 3;
-  }
-  draw() {
-    c.beginPath();
-    c.arc(this.position.x, this.position.y, this.radius, 0, Math.PI * 2);
-    c.fillStyle = "black";
-    c.fill();
-    c.closePath();
-  }
-  update() {
-    this.position.x;
-    this.position.y;
-    this.draw();
+// class Point {
+//   constructor({ position }) {
+//     this.position = position;
+//     this.radius = gridSize / 3;
+//   }
+//   draw() {
+//     c.beginPath();
+//     c.arc(this.position.x, this.position.y, this.radius, 0, Math.PI * 2);
+//     c.fillStyle = "black";
+//     c.fill();
+//     c.closePath();
+//   }
+//   update() {
+//     this.position.x;
+//     this.position.y;
+//     this.draw();
    
-  }
-}
+//   }
+// }
 
-const point = new Point({
-  position: {
-    x: Boundary.width * 7.5,
-    y: Boundary.height * 0.5,
-  },
-});
+// const point = new Point({
+//   position: {
+//     x: Boundary.width * 7.5,
+//     y: Boundary.height * 0.5,
+//   },
+// });
 
-point.update();
-console.log(point)
+// point.update();
+// console.log(point)
 const map = [
-  ["-", "-", "-", "-", "-", "-", "-", " ", "-", "-"],
+  ["-", "-", "-", "-", "-", "-", "-", "x", "-", "-"],
   ["-", " ", " ", " ", " ", " ", "-", " ", " ", "-"],
   ["-", " ", "-", "-", "-", "-", "-", "-", " ", "-"],
   ["-", " ", "-", " ", " ", " ", " ", "-", " ", "-"],
@@ -117,12 +133,26 @@ map.forEach((row, i) => {
               x: Boundary.width * j,
               y: Boundary.height * i,
             },
+            type: 'normal',
           })
         );
         break;
+      case "x":
+        boundaries.push(
+          new finish({
+            position: {
+              x: Boundary.width * j,
+              y: Boundary.height * i,
+            },
+            type: 'finish',
+          })
+        );
+        break;
+
     }
   });
 });
+
 
 function animate(){
     c.clearRect(0, 0, canvas.width, canvas.height)
@@ -137,12 +167,17 @@ function animate(){
              && 
             player.position.x - player.radius + player.velocity.x <= Boundary.position.x + Boundary.width){
                 console.log('collision')
+                if(Boundary.type == 'finish'){
+                  console.log('top');
+                }else{
+                  console.log('bounch')
+                }
                 player.velocity.y = 0
                 player.velocity.x = 0 
             }
       });
     player.update();
-    point.update()
+    // point.update()
     player.velocity.y = 0
     player.velocity.x = 0 
 
