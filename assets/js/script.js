@@ -5,7 +5,7 @@ console.log(c);
 
 canvas.width = innerWidth;
 canvas.height = innerHeight;
-
+let level = 1;
 let gridSize = 100;
 
 class Boundary {
@@ -40,7 +40,35 @@ class Player {
     this.position.y += this.velocity.y
   }
 }
+class Point {
+  constructor({ position }) {
+    this.position = position;
+    this.radius = gridSize / 3;
+  }
+  draw() {
+    c.beginPath();
+    c.arc(this.position.x, this.position.y, this.radius, 0, Math.PI * 2);
+    c.fillStyle = "black";
+    c.fill();
+    c.closePath();
+  }
+  update() {
+    this.position.x;
+    this.position.y;
+    this.draw();
+   
+  }
+}
 
+const point = new Point({
+  position: {
+    x: Boundary.width * 7.5,
+    y: Boundary.height * 0.5,
+  },
+});
+
+point.update();
+console.log(point)
 const map = [
   ["-", "-", "-", "-", "-", "-", "-", " ", "-", "-"],
   ["-", " ", " ", " ", " ", " ", "-", " ", " ", "-"],
@@ -95,6 +123,7 @@ map.forEach((row, i) => {
     }
   });
 });
+
 function animate(){
     c.clearRect(0, 0, canvas.width, canvas.height)
     requestAnimationFrame(animate)
@@ -113,6 +142,7 @@ function animate(){
             }
       });
     player.update();
+    point.update()
     player.velocity.y = 0
     player.velocity.x = 0 
 
@@ -126,6 +156,7 @@ function animate(){
         player.velocity.x = 5
       }
  }
+ 
 animate()
 
 
@@ -170,30 +201,5 @@ addEventListener("keyup", ({ key }) => {
   });
   //points
 
-  class Point {
-    constructor({ position }) {
-      this.position = position;
-      this.radius = gridSize / 3;
-    }
-    draw() {
-      c.beginPath();
-      c.arc(this.position.x, this.position.y, this.radius, 0, Math.PI * 2);
-      c.fillStyle = "black";
-      c.fill();
-      c.closePath();
-    }
-    update() {
-      this.draw();
-      this.position.x;
-      this.position.y;
-    }
-  }
+ 
 
-  const point = new Point({
-    position: {
-      x: 100,
-      y: 100,
-    },
-  });
-
-  point.update();

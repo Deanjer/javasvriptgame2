@@ -9,6 +9,9 @@
 </head>
 <body>
 <?php include 'db.php';?>
+    <div class="menu">
+        <p>Level: <?php ?></p>
+    </div>
     <canvas></canvas>
     <script src="assets/js/script.js "></script>
 </body>
