@@ -100,12 +100,18 @@ function animate(){
     requestAnimationFrame(animate)
     boundaries.forEach((Boundary) => {
         Boundary.draw();
-        if(player.position.y - player.radius <= Boundary.position.y + Boundary.height && 
-            player.position.x + player.radius >= Boundary.position.x && player.position.y + player.radius >= Boundary.position.y && player.position.x - player.radius <= Boundary.position.x + Boundary.width){
-                console.log(collision)
+        if( player.position.y - player.radius + player.velocity.y <= Boundary.position.y + Boundary.height
+             && 
+            player.position.x + player.radius + player.velocity.x >= Boundary.position.x 
+             && 
+            player.position.y + player.radius + player.velocity.y >= Boundary.position.y 
+             && 
+            player.position.x - player.radius + player.velocity.x <= Boundary.position.x + Boundary.width){
+                console.log('collision')
+                player.velocity.y = 0
+                player.velocity.x = 0 
             }
       });
-      
     player.update();
     player.velocity.y = 0
     player.velocity.x = 0 
@@ -146,7 +152,7 @@ addEventListener("keydown", ({ key }) => {
 });
 
 addEventListener("keyup", ({ key }) => {
-    console.log(key);
+    // console.log(key);
     switch (key) {
       case "w":
         keys.w.pressed = false
@@ -162,4 +168,32 @@ addEventListener("keyup", ({ key }) => {
         break;
     }
   });
-  
+  //points
+
+  class Point {
+    constructor({ position }) {
+      this.position = position;
+      this.radius = gridSize / 3;
+    }
+    draw() {
+      c.beginPath();
+      c.arc(this.position.x, this.position.y, this.radius, 0, Math.PI * 2);
+      c.fillStyle = "black";
+      c.fill();
+      c.closePath();
+    }
+    update() {
+      this.draw();
+      this.position.x;
+      this.position.y;
+    }
+  }
+
+  const point = new Point({
+    position: {
+      x: 100,
+      y: 100,
+    },
+  });
+
+  point.update();
