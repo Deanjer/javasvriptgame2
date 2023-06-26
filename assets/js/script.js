@@ -56,35 +56,7 @@ class Player {
     this.position.y += this.velocity.y
   }
 }
-// class Point {
-//   constructor({ position }) {
-//     this.position = position;
-//     this.radius = gridSize / 3;
-//   }
-//   draw() {
-//     c.beginPath();
-//     c.arc(this.position.x, this.position.y, this.radius, 0, Math.PI * 2);
-//     c.fillStyle = "black";
-//     c.fill();
-//     c.closePath();
-//   }
-//   update() {
-//     this.position.x;
-//     this.position.y;
-//     this.draw();
-   
-//   }
-// }
 
-// const point = new Point({
-//   position: {
-//     x: Boundary.width * 7.5,
-//     y: Boundary.height * 0.5,
-//   },
-// });
-
-// point.update();
-// console.log(point)
 const map = [
   ["-", "-", "-", "-", "-", "-", "-", "x", "-", "-"],
   ["-", " ", " ", " ", " ", " ", "-", " ", " ", "-"],
@@ -168,7 +140,8 @@ function animate(){
             player.position.x - player.radius + player.velocity.x <= Boundary.position.x + Boundary.width){
                 console.log('collision')
                 if(Boundary.type == 'finish'){
-                  console.log('top');
+                  console.log('finish');
+                  setHighscore('player1', level)
                 }else{
                   console.log('bounch')
                 }
@@ -236,5 +209,57 @@ addEventListener("keyup", ({ key }) => {
   });
   //points
 
+// fetch('./assets/php/set_highscore.php', {
+//   method: 'POST',
+//   mode: 'same-origin',
+//   credentials: 'same-origin',
+//   headers: {
+//     Accept: 'application/json, text/plain, */*',
+//     'Content-Type': 'application/json',
+//   },
+//   body: JSON.stringify({ name: test_name, level: test_level }),
+// })
+//   .then((response) => response.json())
+//   .then((data) => {
+//     console.log('Success: ', data);
+//     return data;
+//   });
+
  
 
+  // assets/php/set_highscore.php
+
+
+  const setHighscore = async (name, level) => {
+
+    return await fetch('assets/php/set_highscore.php', {
+
+      method: 'POST',
+
+      mode: 'same-origin',
+
+      credentials: 'same-origin',
+
+      headers: {
+
+        Accept: 'application/json, text/plain, */*',
+
+        'Content-Type': 'application/json',
+
+      },
+
+      body: JSON.stringify({ name, level }),
+
+    })
+
+      .then((response) => response.json())
+
+      .then((data) => {
+
+        return data;
+
+      });
+
+  };
+  //random background color
+  
