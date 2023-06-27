@@ -130,6 +130,12 @@ function changeLevel(level) {
     case 4:
       window.location.href = "level4.html";
       break;
+    case 5:
+      window.location.href = "level5.html";
+      break;
+    case 6:
+      window.location.href = "level6.html";
+      break;
   }
 }
 
@@ -155,7 +161,7 @@ function animate(){
                   var audio = new Audio('assets/sound/fisnish.wav');
                   audio.onended = function () {};
                   audio.play();
-                  changeLevel(level + 1); // Transition to the next level
+                  changeLevel(level + 1); 
                 ;
                 }else{
                   console.log('bounch')

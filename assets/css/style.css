@@ -21,6 +21,9 @@ canvas{
     background-color: #F08A4B;
     text-align: center;
     vertical-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .menu p{
     font-size: 25px;
