@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/style.css ">
+</head>
+<body onload="finish_sound()">
+    <audio id="finish-sound"> <!--Source the audio file. -->
+        <source src="assets/sound/fisnish.wav" type="audio/wav">
+</audio>
+    <div id="top-menu" class="menu">
+        <p>Level: 4</p>
+      <audio id="foobar" src="assets/sound/fisnish.wav" preload="auto">
+        <script src="assets/js/audio.js"></script>   
+    </div>
+    <div class="flex-container">
+    <canvas id="canvas" height="900" width="1200"></canvas>
+</div>
+    <script src="assets/js/level3.js "></script>
+    <script src="assets/js/script.js "></script>
+</body>
+</html>

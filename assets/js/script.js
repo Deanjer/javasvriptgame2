@@ -119,6 +119,20 @@ map.forEach((row, i) => {
   });
 });
 
+function changeLevel(level) {
+  switch (level) {
+    case 2:
+      window.location.href = "level2.html";
+      break;
+    case 3:
+      window.location.href = "level3.html";
+      break;
+    case 4:
+      window.location.href = "level4.html";
+      break;
+  }
+}
+
 
 function animate(){
     
@@ -134,17 +148,15 @@ function animate(){
              && 
             player.position.x - player.radius + player.velocity.x <= Boundary.position.x + Boundary.width){
                 console.log('collision')
-                if(Boundary.type == 'finish' && finished == false){
+                if (Boundary.type == 'finish' && finished == false) {
                   console.log('finish');
                   finished = true;
-                  setHighscore('player1', level)
+                  setHighscore('player1', level);
                   var audio = new Audio('assets/sound/fisnish.wav');
-                  audio.onended = function() {
-                    // Hier kun je code toevoegen die wordt uitgevoerd wanneer het audiobestand is afgelopen
-                    // bijvoorbeeld: console.log("Audiobestand is afgelopen");
-                  };
+                  audio.onended = function () {};
                   audio.play();
-                  window.location.href = "level2.html";
+                  changeLevel(level + 1); // Transition to the next level
+                ;
                 }else{
                   console.log('bounch')
                 }
