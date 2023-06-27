@@ -9,7 +9,9 @@ c.globalCompositeOperation = 'destination-over'
 // Now draw!
 c.fillStyle = "black";
 c.fillRect(0, 0, canvas.width, canvas.height);
-
+// canvas.width = innerWidth;
+// canvas.height = innerHeight;
+let level = 2;
 let gridSize = 100;
 
 class Boundary {
@@ -61,6 +63,18 @@ class Player {
     this.position.y += this.velocity.y
   }
 }
+
+const map = [
+  ["-", "-", "-", "-", "-", "-", "-", "x", "-", "-", "-", "-"],
+  ["-", " ", "-", " ", " ", " ", "-", " ", " ", "-", " ", "-"],
+  ["-", " ", "-", " ", "-", "-", "-", "-", " ", " ", " ", "-"],
+  ["-", " ", "-", " ", " ", " ", " ", "-", " ", "-", " ", "-"],
+  ["-", " ", "-", " ", "-", "-", "-", "-", "-", "-", " ", "-"],
+  ["-", " ", " ", " ", "-", " ", "-", " ", " ", "-", " ", "-"],
+  ["-", " ", "-", " ", "-", " ", "-", "-", " ", " ", " ", "-"],
+  ["-", " ", "-", " ", " ", " ", " ", " ", " ", "-", " ", "-"],
+  ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"],
+];
 
 const boundaries = [];
 const player = new Player({

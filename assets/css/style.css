@@ -7,8 +7,13 @@
     background-color: brown;
 } */
 canvas{
-    image-rendering: pixelated;
-    border: 1px solid black;
+    image-rendering:pixelated;
+    border: 2px dotted black;
+}
+.flex-container{
+    display: flex;
+    justify-content: center;
+    /* text-align: center; */
 }
 .menu{
     height: 80px;
